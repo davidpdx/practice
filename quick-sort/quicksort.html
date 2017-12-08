@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+Quick Sort Example
+</title>
+</head>
+<body>
+<script>
+
+/*
+==========
+QUICK SORT
+==========
+
+Ingredients:
+* left array to hold low values
+* right array to hold high values
+* new array to hold concatenated values during sorting and to finally return concatenated full sort at the end
+* pivot var to compare to array members
+* for loop to compare pivot to array members
+* concat left array, pivot value, right array
+* if array <= 1, return array to signal array is sorted
+* recursively run for loop to sort until array <= 1
+* array.pop() to remove last array member from array to assign to pivot value
+* array.push() to add array member value to end of new array
+
+*/
+
+var counter = 0;
+
+function quick_Sort(array) {
+
+	counter++;	
+	console.log("\nrun number: " + counter);	
+	
+	if(counter === 1) {console.log(">>full array - " + array);}
+	//	|
+	
+	if(counter === 2) {console.log(">>big left array - " + array);}
+	//	/
+	
+	if(counter === 3) {console.log(">>left > left array - empty - end of branch " + array);}
+	//		/
+	// 	   /
+	//    x <- end
+	
+	if(counter === 4) {console.log(">>left > right array - end of branch " + array);}
+	//		/
+	//	    \
+	//		 x <- end
+	
+	if(counter === 5) {console.log(">>left > right > left array - end of branch " + array);}
+	//		/
+	//      \
+	//      /
+	//	   x <- end
+	
+	if(counter === 6) {console.log(">>left > right > right array - end of branch " + array);}
+	//		/
+	//      \
+	//       \
+	//		  x <- end
+	
+	if(counter === 7) {console.log(">>big right array - " + array);}
+	//		\
+	
+	if(counter === 8) {console.log(">>right > left array - end of branch" + array);}
+	//		\
+	//		/
+	//	   x <- end
+	
+	if(counter === 9) {console.log(">>right > right array - " + array);}
+	//		\
+	//		 \
+	
+	if(counter === 10) {console.log(">>right > right > left - end of branch " + array);}
+	//		\
+	//		 \
+	//		 /
+	//	    x <- end
+	
+	if(counter === 11) {console.log(">>right > right > right array - end of branch " + array);}
+	//		\
+	//		 \
+	//		  \
+	//		   x <- end
+	
+	
+	// when only one element in array, that branch's array is sorted or empty
+	if(array.length <= 1) {
+		return array;
+	} else {
+		var left = []; 	//0,-5,-7; 7
+		var right = [];	//7,30,10,3; 7,30,10
+		var newArray = [];
+		
+		// pivot in return statement is set to pivot's first value 
+		var pivot = array.pop(); //2, -7, -5, 3, 10			
+		var length = array.length;
+		
+		// loop to compare array members to pivot value
+		for(var i=0;i<length;i++) {
+			console.log("Is " + array[i] + " smaller than/equal to " + pivot + "?");
+			
+			// if array member is smaller than or equal to pivot 
+			if(array[i] <= pivot) {				
+				
+				// push to left array
+				left.push(array[i]);
+				console.log("yes - left array: " + left + " | right array: " + right);
+				
+			// if array member is larger than pivot
+			} else {
+				
+				//push to right array
+				right.push(array[i]);
+				console.log("no - left array: " + left + " | right array: " + right);
+				
+			}
+		}
+		
+		//initial pivot is set to pivot in return statement
+		//sort left array fully and recursively
+		//sort right array fully and recursively
+		//concat left array, pivot, and right array
+		return newArray.concat(quick_Sort(left), pivot, quick_Sort(right));
+	}
+}
+
+var input_array = [7,30,0,-5,10,-7,3,2];
+
+document.write("Array before performing Quick sort: " + input_array);
+
+var sortedArray = quick_Sort(input_array);
+
+document.write("<br>Sorted array is: " + sortedArray);
+
+
+
+/*
+run number: 1
+full array - 7,30,0,-5,10,-7,3,2
+Is 7 smaller than 2?
+no - left array:  | right array: 7
+Is 30 smaller than 2?
+no - left array:  | right array: 7,30
+Is 0 smaller than 2?
+yes - left array: 0 | right array: 7,30
+Is -5 smaller than 2?
+yes - left array: 0,-5 | right array: 7,30
+Is 10 smaller than 2?
+no - left array: 0,-5 | right array: 7,30,10
+Is -7 smaller than 2?
+yes - left array: 0,-5,-7 | right array: 7,30,10
+Is 3 smaller than 2?
+no - left array: 0,-5,-7 | right array: 7,30,10,3
+
+fully resolved:
+* return pivot is set to 2 complete
+	* entire search is pivoted initially on 2
+
+yet to be resolved:
+concat left 0,-5,-7	incomplete
+concat right 7,30,10,3 incomplete
+
+left	0,-5,-7 incomplete
+* pivot	2
+right	7,30,10,3 incomplete
+concat	0,-5,-7,2,7,30,10,3 incomplete
+
+
+begin resolution of big left array:
+ 
+run number: 2
+big left array - 0,-5,-7
+Is 0 smaller than -7?
+no - left array:  | right array: 0
+Is -5 smaller than -7?
+no - left array:  | right array: 0,-5
+
+* left	x complete
+* pivot	-7
+right	0,-5 incomplete
+concat	-7,0,-5 incomplete
+
+run number: 3
+left array (of big left array) - now empty 
+
+run number: 4
+right array (of big left array) - 0,-5
+Is 0 smaller than -5?
+no - left array:  | right array: 0
+* when left or right array get down to length one, that tree is sorted
+
+* left	x complete
+* pivot is -5
+* right	0 complete
+* concat -5,0 complete
+ 
+run number: 5
+left array (of mid left array (of big left array)) - now empty 
+
+run number: 6
+right array (of mid left array (of big left array)) - 0
+
+
+
+
+concat 	x
+	pivot -7, 
+		concat 	-5, 0
+
+pivot	2
+
+concat	x, 
+	pivot 3
+		concat,7,10,30
+
+run number: 7
+big right array - 7,30,10,3
+Is 7 smaller than 3?
+no - left array:  | right array: 7
+Is 30 smaller than 3?
+no - left array:  | right array: 7,30
+Is 10 smaller than 3?
+no - left array:  | right array: 7,30,10
+
+* left x complete
+* pivot 3
+right 7,30,10 incomplete
+concat 3,7,30,10 incomplete
+
+run number: 8
+left array of big right array - now empty
+
+run number: 9
+array - 7,30,10
+Is 7 smaller than 10?
+yes - left array: 7 | right array: 
+Is 30 smaller than 10?
+no - left array: 7 | right array: 30
+
+left 7 complete
+pivot 10
+right 30 complete
+* concat 7,10,30 complete
+
+run number: 10
+array - 7
+
+run number: 11
+array - 30
+*/
+
+/*
+Example comes from 100+ JavaScript Programs Android App by Dishoom Dishoom
+Comments added by me for understanding
+*/
+
+</script>
+</body>
+</html>
