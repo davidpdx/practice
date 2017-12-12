@@ -32,6 +32,7 @@ var counter = 0;
 
 function quick_Sort(array) {
 
+//for console:
 	counter++;	
 	console.log("\nrun number: " + counter);	
 	
@@ -42,51 +43,51 @@ function quick_Sort(array) {
 	//	/
 	
 	if(counter === 3) {console.log(">>left > left array - empty - end of branch " + array);}
-	//		/
-	// 	   /
+	//	/
+	//     /
 	//    x <- end
 	
 	if(counter === 4) {console.log(">>left > right array - end of branch " + array);}
-	//		/
-	//	    \
-	//		 x <- end
+	//	/
+	//	\
+	//	 x <- end
 	
 	if(counter === 5) {console.log(">>left > right > left array - end of branch " + array);}
-	//		/
+	//	/
 	//      \
 	//      /
-	//	   x <- end
+	//     x <- end
 	
 	if(counter === 6) {console.log(">>left > right > right array - end of branch " + array);}
-	//		/
+	//	/
 	//      \
 	//       \
-	//		  x <- end
+	//	  x <- end
 	
 	if(counter === 7) {console.log(">>big right array - " + array);}
-	//		\
+	//	\
 	
 	if(counter === 8) {console.log(">>right > left array - end of branch" + array);}
-	//		\
-	//		/
-	//	   x <- end
+	//	\
+	//	/
+	//     x <- end
 	
 	if(counter === 9) {console.log(">>right > right array - " + array);}
-	//		\
-	//		 \
+	//	\
+	//	 \
 	
 	if(counter === 10) {console.log(">>right > right > left - end of branch " + array);}
-	//		\
-	//		 \
-	//		 /
-	//	    x <- end
+	//	\
+	//	 \
+	//	 /
+	//	x <- end
 	
 	if(counter === 11) {console.log(">>right > right > right array - end of branch " + array);}
-	//		\
-	//		 \
-	//		  \
-	//		   x <- end
-	
+	//	\
+	//	 \
+	//	  \
+	//	   x <- end
+//end for console	
 	
 	// when only one element in array, that branch's array is sorted or empty
 	if(array.length <= 1) {
@@ -116,8 +117,7 @@ function quick_Sort(array) {
 				
 				//push to right array
 				right.push(array[i]);
-				console.log("no - left array: " + left + " | right array: " + right);
-				
+				console.log("no - left array: " + left + " | right array: " + right);		
 			}
 		}
 		
@@ -138,7 +138,8 @@ var sortedArray = quick_Sort(input_array);
 document.write("<br>Sorted array is: " + sortedArray);
 
 
-
+//console output:
+	
 /*
 run number: 1
 full array - 7,30,0,-5,10,-7,3,2
@@ -205,9 +206,6 @@ left array (of mid left array (of big left array)) - now empty
 run number: 6
 right array (of mid left array (of big left array)) - 0
 
-
-
-
 concat 	x
 	pivot -7, 
 		concat 	-5, 0
@@ -256,7 +254,7 @@ array - 30
 
 /*
 Example comes from 100+ JavaScript Programs Android App by Dishoom Dishoom
-Comments added by me for understanding
+All comments added by David Duncan for understanding
 */
 
 </script>
