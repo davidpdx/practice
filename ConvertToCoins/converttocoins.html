@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+Convert an Amount to Coins
+</title>
+</head>
+<body>
+<script>
+
+/*
+
+==========================
+Convert an amount to coins
+==========================
+
+Ingredients:
+* Amount variable in cents to convert to coins
+* Array of coin denominations sorted largest to smallest e.g. [25,10,5,1]
+* Function with two parameters/arguments amount to convert and coin denominations array
+* Left variable to hold remainder after each iteration
+* concat() - joins two or more arrays, combining items with commas
+* shift() - removes first item from array
+* Recursion instead of looping
+
+*/
+
+function amount_change(amount, coins) {
+
+	//if amount is zero, return empty array
+	//runs at least once at end of if amount is integer 0+
+	if(amount == 0) {
+		return [];
+	
+	//else divide amount into coin array until zero
+	} else {
+		
+		//goal: filter coins
+		// if var amount is larger or equal to the largest coin (in array)
+			// 1. subtract coin value from var amount and assign result to var left
+			// 2. run recursively, adding the coin value to a return array
+		if(amount >= coins[0]) {
+			console.log('coins: ' + coins);
+			//var left is set to amount minus the largest coin (first item in array)
+			//if amount is 26 and coin[0] is 25, left is changed to 1
+			left = (amount - coins[0]);
+			
+			//concat joins two or more arrays, combining them with commas
+				//add coin[0] value to return array []
+					//recursively: coins[0]+coins[0]+coins[0]+coins[0]+coins[0]+coins[0] until the end]
+			//return array of concatenated return values when recursive concatenation resolves
+			return [coins[0]].concat(amount_change(left, coins));
+		
+		//remove largest coin from coin array and run function again
+		} else {
+		
+			//shift method removes first item from coin array, e.g. largest coin
+			coins.shift();
+			
+			//run it again until the amount == 0
+			return amount_change(amount, coins);
+		}
+	}
+}
+
+//amount must be in cents, no floats
+var amt = 267;
+//coin denominations must be sorted lg to sm
+var coin = [25,10,5,1];
+
+document.write("Amount converted: " + amt + '<br>');
+document.write("Coin demonitations: " + coin + '<br>');
+document.write("Coins: " + amount_change(amt, coin));
+
+/*
+Example comes from 100+ JavaScript Programs Android App by Dishoom Dishoom
+All comments added by David Duncan for understanding
+*/
+
+</script>
+</body>
+</html>
