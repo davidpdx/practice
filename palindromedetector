@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+Detect Palindrome
+</title>
+</head>
+<body>
+<script>
+
+
+/*
+
+==================
+Dectect Palindrome
+==================
+
+Ingredients:
+* string input
+* rev variable to hold reversed string
+* string length to use in for-loop
+* minus one adjustment to account for length vs index counting format difference
+* charAt() to search string character-by-character in reverse
+* decrementing for-loop to create reversed string
+
+what:
+define palindrome
+	same string backwards and forwards
+
+how:
+reverse string and simple compare to original
+	intake string
+	reverse it
+	compare it
+	return results
+*/
+
+function detect_palindrome(string) {
+
+	//var to hold reverse string
+	var rev = "";
+
+	//var to hold str length instead of calling length over and over
+	var strlen = string.length - 1; //minus one to adjust for index counting format
+
+	//for loop: 
+		//i is assigned the original string length (minus one); 
+		//run loop until i is less than zero; 
+		//decrement by one after each iteration
+	for (var i=strlen;i>=0;i--) {
+	
+		//concatenate string characters backward and assign to rev
+		rev += string.charAt(i);
+	}
+	
+	if(string == rev) {
+		return "Palindrome...DETECTED!";
+	} else {
+		return "Palindrome...NOT DETECTED.";
+	}
+	//return reversed string
+	//return rev;
+}
+
+//original string - punctuation counts
+var string = "amanaplanacanalpanama";
+
+//write original string to display
+document.write('original string: ' + string + '<br>');
+
+//write palindrome results to display
+document.write('palindrome detector results: ' + detect_palindrome(string));
+
+/*
+Author David Duncan
+*/
+
+</script>
+</body>
+</html>
