@@ -1,3 +1,3 @@
 # practice
 
-## examining working examples for understanding
+## examining or creating working vanilla JavaScript examples for better understanding
