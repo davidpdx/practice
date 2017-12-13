@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+Reverse a string
+</title>
+</head>
+<body>
+<script>
+
+function reverse_string(string) {
+
+	//var to hold reverse string
+	var rev = "";
+
+	//var to hold str length instead of calling length over and over
+	var strlen = string.length - 1; //minus one to adjust for index counting format
+
+	//for loop: 
+		//i is assigned the original string length (minus one); 
+		//run loop until i is less than zero; 
+		//decrement by one after each iteration
+	for (var i=strlen;i>=0;i--) {
+	
+		//concatenate string characters backward and assign to rev
+		rev += string.charAt(i);
+	}
+	
+	//return reversed string
+	return rev;
+}
+
+//original string
+var string = "hello, world";
+
+//write original string to display
+document.write('original string: ' + string + '<br>');
+
+//write reversed string to display
+document.write('reversed string: ' + reverse_string(string));
+
+/*
+Author David Duncan
+*/
+
+</script>
+</body>
+</html>
